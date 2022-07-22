@@ -21,23 +21,41 @@ def to_greeklish(word):
     greeklish_list = [['a'],['b', 'v'],['g'],['d', 'th'],['e'],['z'],['h', 'i', 'e'],['u', '8', 'th'],
 ['i'],['k'],['l'],['m'],['n'],['x', 'ks', 'j', '3'],['o'],['p'],['r'],
 ['s', 'c'],['s'],['t'],['y', 'u'],['f'],['x', 'h', 'ch'],['ps', '4'],['w', 'o']]
-    v = word.find(max(word, key=lambda x: len(greeklish_list[greek_list.index(x)])))
-    v1 = len(greeklish_list[greek_list.index(word[v])])
+    vs = [i for i in range(len(word)) if len(greeklish_list[greek_list.index(word[i])]) == len(greeklish_list[greek_list.index(max(word, key=lambda x: len(greeklish_list[greek_list.index(x)])))])]
+    print(vs)
     lst = []
-    c = 0
-    while c < v1:
-        for j in range(v1):
-            word_lst = []
-            for i in range(len(word)):
-                if word[i] not in greek_list:
-                    word_lst.append(word[i])
-                elif i != v:
-                    word_lst.append(greeklish_list[greek_list.index(word[i])][min(j, len(greeklish_list[greek_list.index(word[i])]) - 1)])
-                else:
-                    word_lst.append(greeklish_list[greek_list.index(word[v])][c])
-            if ''.join(word_lst) not in lst:
-                lst.append(''.join(word_lst))
-        c += 1
+    for v in vs:
+        v1 = len(greeklish_list[greek_list.index(word[v])])
+        c = 0
+        while c < v1:
+            for j in range(v1):
+                word_lst = []
+                for i in range(len(word)):
+                    if word[i] not in greek_list:
+                        word_lst.append(word[i])
+                    elif i != v:
+                        word_lst.append(greeklish_list[greek_list.index(word[i])][min(j, len(greeklish_list[greek_list.index(word[i])]) - 1)])
+                    else:
+                        word_lst.append(greeklish_list[greek_list.index(word[v])][c])
+                if ''.join(word_lst) not in lst:
+                    lst.append(''.join(word_lst))
+            c += 1
+    for v in vs:
+        v1 = len(greeklish_list[greek_list.index(word[v])])
+        c = 0
+        while c < v1:
+            for j in range(v1):
+                word_lst = []
+                for i in range(len(word)):
+                    if word[i] not in greek_list:
+                        word_lst.append(word[i])
+                    elif word[i] != word[v]:
+                        word_lst.append(greeklish_list[greek_list.index(word[i])][min(j, len(greeklish_list[greek_list.index(word[i])]) - 1)])
+                    else:
+                        word_lst.append(greeklish_list[greek_list.index(word[v])][c])
+                if ''.join(word_lst) not in lst:
+                    lst.append(''.join(word_lst))
+            c += 1
     return lst
 
 if __name__ == '__main__':
