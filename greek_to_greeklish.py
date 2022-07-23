@@ -22,7 +22,6 @@ def to_greeklish(word):
 ['i'],['k'],['l'],['m'],['n'],['x', 'ks', 'j', '3'],['o'],['p'],['r'],
 ['s', 'c'],['s'],['t'],['y', 'u'],['f'],['x', 'h', 'ch'],['ps', '4'],['w', 'o']]
     vs = [i for i in range(len(word)) if len(greeklish_list[greek_list.index(word[i])]) == len(greeklish_list[greek_list.index(max(word, key=lambda x: len(greeklish_list[greek_list.index(x)])))])]
-    print(vs)
     lst = []
     for v in vs:
         v1 = len(greeklish_list[greek_list.index(word[v])])
